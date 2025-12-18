@@ -3,5 +3,40 @@
 {% block title %}Vêtements Avant-Gardistes{% endblock %}
 
 {% block body %}
-    <h1>zizi</h1>
+    <div class="products-hero">
+        <div class="products-hero-content">
+            <h1>Nos Collections</h1>
+            <p>Découvrez nos vêtements avant-gardistes</p>
+        </div>
+    </div>
+
+    <div class="products-container">
+        {% if products %}
+            <div class="products-grid">
+                {% for product in products %}
+                    <div class="product-card">
+                        <div class="product-image">
+                            {% if product.image %}
+                                <img src="{{ product.image }}" alt="{{ product.nom }}" />
+                            {% else %}
+                                <div class="product-image-placeholder">Pas d'image</div>
+                            {% endif %}
+                        </div>
+                        <div class="product-info">
+                            <h3>{{ product.nom }}</h3>
+                            <p class="product-description">{{ product.description }}</p>
+                            <div class="product-footer">
+                                <span class="product-price">{{ (product.prix / 100)|number_format(2, ',', ' ') }} €</span>
+                                <a href="" class="product-btn">Voir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-products">
+                <p>Aucun produit disponible pour le moment.</p>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
