@@ -5,8 +5,8 @@
 {% block body %}
     <div class="products-hero">
         <div class="products-hero-content">
-            <h1>Nos Collections</h1>
-            <p>Découvrez nos vêtements avant-gardistes</p>
+            <h1>Collections Du Paris Saint-Germain</h1>
+            <p>Découvrez nos maillots et produits exclusifs du PSG</p>
         </div>
     </div>
 
@@ -27,7 +27,7 @@
                             <p class="product-description">{{ product.description }}</p>
                             <div class="product-footer">
                                 <span class="product-price">{{ (product.prix / 100)|number_format(2, ',', ' ') }} €</span>
-                                <a href="" class="product-btn">Voir plus</a>
+                                <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-btn">Voir plus</a>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
             </div>
         {% else %}
             <div class="no-products">
-                <p>Aucun produit disponible pour le moment.</p>
+                <p>Aucun produit n'est disponible pour le moment.</p>
             </div>
         {% endif %}
     </div>

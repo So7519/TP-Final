@@ -1,38 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ product.nom }}{% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
+    <div class="product-detail">
+        <div class="product-detail-container">
+            <div class="product-detail-image">
+                {% if product.image %}
+                    <img src="{{ product.image }}" alt="{{ product.nom }}" />
+                {% else %}
+                    <div class="product-image-placeholder">Pas d'image</div>
+                {% endif %}
+            </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ product.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ product.image }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ product.prix }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="product-detail-info">
+                <h1>{{ product.nom }}</h1>
+                
+                <div class="product-detail-price">
+                    {{ (product.prix / 100)|number_format(2, ',', ' ') }} €
+                </div>
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+                <div class="product-detail-description">
+                    <h3>Description</h3>
+                    <p>{{ product.description }}</p>
+                </div>
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-
-    {{ include('product/_delete_form.html.twig') }}
+                <div class="product-detail-actions">
+                    <a href="{{ path('app_product_index') }}" class="btn-secondary">← Retour à la liste</a>
+                    <button class="btn-primary">Faire une Demande</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
